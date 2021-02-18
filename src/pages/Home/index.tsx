@@ -8,6 +8,8 @@ import { Switch, Route } from 'react-router-dom'
 // Project scoped imports.
 import styles from "./styles";
 import translations from "./trans";
+
+//components
 import Navigation from './Navigation/index';
 import Welcome from './Welcome/index'
 import Users from './Users/index'

@@ -10,12 +10,7 @@ import cx from "classnames";
 import styles from "./styles";
 import translations from "./trans";
 
-/**
- * Example component.
- * @description This is an example component including translations and theming.
- * @version 1.0.0
- * @author Mike Eling <mike.eling97@gmail.com>
- */
+
 const Users = (props: ComponentProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();
