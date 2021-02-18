@@ -1,11 +1,14 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { Home, WrongPage } from "pages/"
+import React, { useEffect } from "react";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
+import { Home, WrongPage } from "pages/";
+import Login from '../pages/Login/index'
 
 const Routes = () => {
+    const location = useLocation();
 
     return <Switch>
         <Route path="/" exact component={Home} />
+        <Route exact path="/login" component={Login} />
         <Route exact component={WrongPage} />
     </Switch>
 }
