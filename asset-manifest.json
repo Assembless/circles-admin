@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/circles-admin/static/js/main.f3893004.chunk.js",
-    "main.js.map": "/circles-admin/static/js/main.f3893004.chunk.js.map",
-    "runtime-main.js": "/circles-admin/static/js/runtime-main.98adbff2.js",
-    "runtime-main.js.map": "/circles-admin/static/js/runtime-main.98adbff2.js.map",
-    "static/js/2.679573a8.chunk.js": "/circles-admin/static/js/2.679573a8.chunk.js",
-    "static/js/2.679573a8.chunk.js.map": "/circles-admin/static/js/2.679573a8.chunk.js.map",
-    "static/js/3.08fbb88c.chunk.js": "/circles-admin/static/js/3.08fbb88c.chunk.js",
-    "static/js/3.08fbb88c.chunk.js.map": "/circles-admin/static/js/3.08fbb88c.chunk.js.map",
+    "main.js": "/circles-admin/static/js/main.9bfa7345.chunk.js",
+    "main.js.map": "/circles-admin/static/js/main.9bfa7345.chunk.js.map",
+    "runtime-main.js": "/circles-admin/static/js/runtime-main.cabce5e7.js",
+    "runtime-main.js.map": "/circles-admin/static/js/runtime-main.cabce5e7.js.map",
+    "static/js/2.472e94c8.chunk.js": "/circles-admin/static/js/2.472e94c8.chunk.js",
+    "static/js/2.472e94c8.chunk.js.map": "/circles-admin/static/js/2.472e94c8.chunk.js.map",
+    "static/js/3.3435f0af.chunk.js": "/circles-admin/static/js/3.3435f0af.chunk.js",
+    "static/js/3.3435f0af.chunk.js.map": "/circles-admin/static/js/3.3435f0af.chunk.js.map",
     "index.html": "/circles-admin/index.html",
-    "static/js/2.679573a8.chunk.js.LICENSE.txt": "/circles-admin/static/js/2.679573a8.chunk.js.LICENSE.txt"
+    "static/js/2.472e94c8.chunk.js.LICENSE.txt": "/circles-admin/static/js/2.472e94c8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.98adbff2.js",
-    "static/js/2.679573a8.chunk.js",
-    "static/js/main.f3893004.chunk.js"
+    "static/js/runtime-main.cabce5e7.js",
+    "static/js/2.472e94c8.chunk.js",
+    "static/js/main.9bfa7345.chunk.js"
   ]
 }
