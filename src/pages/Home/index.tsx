@@ -1,12 +1,16 @@
 // Deps scoped imports.
 import React from "react";
-import { makeStyles, Container } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import { useLittera } from "react-littera";
 import cx from "classnames";
+import { Switch, Route } from 'react-router-dom'
 
 // Project scoped imports.
 import styles from "./styles";
 import translations from "./trans";
+import Navigation from './Navigation/index';
+import Welcome from './Welcome/index'
+import Users from './Users/index'
 
 /**
  * Home component
@@ -14,13 +18,18 @@ import translations from "./trans";
  * @version 1.0.0
  * @author Mike Eling <mike.eling97@gmail.com>
  */
+
 const Home = (props: ComponentProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();
 
-    return <Container maxWidth="sm" className={cx(classes.root, props.className)} style={props.style}>
-        <h4 className={classes.h4}>{translated.title}</h4>
-    </Container>
+    return <div className={cx(classes.root, props.className)} style={props.style}>
+        <Navigation />
+        <Switch>
+            <Route exact path='/home' component={Welcome} />
+            <Route exact path='/home/users' component={Users} />
+        </Switch>
+    </div>
 }
 
 // Creates a hook for generating classnames.

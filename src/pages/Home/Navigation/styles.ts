@@ -3,11 +3,10 @@ import { createStyles } from "@material-ui/core/styles";
 
 export default ((theme: any) => createStyles({
     root: {
-        height: '100vh',
-
+        // Container styles...
     },
     toolbar: {
-        height: '10vh',
+        // Head text styles...
         color: theme.palette.primary
     }
 }));
