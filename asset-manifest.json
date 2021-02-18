@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/static/js/main.e0f8a251.chunk.js",
-    "main.js.map": "/static/js/main.e0f8a251.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.8bf55233.js",
-    "runtime-main.js.map": "/static/js/runtime-main.8bf55233.js.map",
-    "static/js/2.daa61571.chunk.js": "/static/js/2.daa61571.chunk.js",
-    "static/js/2.daa61571.chunk.js.map": "/static/js/2.daa61571.chunk.js.map",
-    "static/js/3.eb14868d.chunk.js": "/static/js/3.eb14868d.chunk.js",
-    "static/js/3.eb14868d.chunk.js.map": "/static/js/3.eb14868d.chunk.js.map",
-    "index.html": "/index.html",
-    "static/js/2.daa61571.chunk.js.LICENSE.txt": "/static/js/2.daa61571.chunk.js.LICENSE.txt"
+    "main.js": "/circles-admin/static/js/main.e0f8a251.chunk.js",
+    "main.js.map": "/circles-admin/static/js/main.e0f8a251.chunk.js.map",
+    "runtime-main.js": "/circles-admin/static/js/runtime-main.b2d35909.js",
+    "runtime-main.js.map": "/circles-admin/static/js/runtime-main.b2d35909.js.map",
+    "static/js/2.daa61571.chunk.js": "/circles-admin/static/js/2.daa61571.chunk.js",
+    "static/js/2.daa61571.chunk.js.map": "/circles-admin/static/js/2.daa61571.chunk.js.map",
+    "static/js/3.eb14868d.chunk.js": "/circles-admin/static/js/3.eb14868d.chunk.js",
+    "static/js/3.eb14868d.chunk.js.map": "/circles-admin/static/js/3.eb14868d.chunk.js.map",
+    "index.html": "/circles-admin/index.html",
+    "static/js/2.daa61571.chunk.js.LICENSE.txt": "/circles-admin/static/js/2.daa61571.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.8bf55233.js",
+    "static/js/runtime-main.b2d35909.js",
     "static/js/2.daa61571.chunk.js",
     "static/js/main.e0f8a251.chunk.js"
   ]
