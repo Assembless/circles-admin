@@ -21,9 +21,9 @@ const Navigation = (props: ComponentProps) => {
         <>
             <AppBar position='static' >
                 <Toolbar className={classes.toolbar}>
-                    <Button variant="contained" color="secondary" id='home' onClick={() => history.push('/home')}>Home</Button>
-                    <Button variant="contained" color="secondary" id='users' onClick={() => history.push('/home/users')}>Users</Button>
-                    <Button variant="contained" color="secondary" id='rooms' onClick={() => history.push('/home/rooms')} > Rooms</Button>
+                    <Button variant="contained" color="secondary" onClick={() => history.push('/home')}>Home</Button>
+                    <Button variant="contained" color="secondary" onClick={() => history.push('/home/users')}>Users</Button>
+                    <Button variant="contained" color="secondary" onClick={() => history.push('/home/rooms')} > Rooms</Button>
                 </Toolbar>
             </AppBar>
         </>)
