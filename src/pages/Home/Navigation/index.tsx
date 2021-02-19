@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 // Component scoped imports.
 import styles from "./styles";
 import translations from "./trans";
+import logo from '../../../assets/circles-logo.svg'
 
 
 const Navigation = (props: ComponentProps) => {
@@ -18,11 +19,12 @@ const Navigation = (props: ComponentProps) => {
 
     return (
         <>
-            <AppBar position='static' >
+            <AppBar elevation={0} position='static' >
                 <Toolbar className={classes.toolbar}>
-                    <Button variant="contained" color="secondary" onClick={() => history.push('/home')}>Home</Button>
-                    <Button variant="contained" color="secondary" onClick={() => history.push('/home/users')}>Users</Button>
-                    <Button variant="contained" color="secondary" onClick={() => history.push('/home/rooms')} > Rooms</Button>
+                    <img className={classes.logo} src={logo} />
+                    <Button className={classes.navlink} variant="contained" color="secondary" onClick={() => history.push('/home')}>Home</Button>
+                    <Button className={classes.navlink} variant="contained" color="secondary" onClick={() => history.push('/home/users')}>Users</Button>
+                    <Button className={classes.navlink} variant="contained" color="secondary" onClick={() => history.push('/home/rooms')} > Rooms</Button>
                 </Toolbar>
             </AppBar>
         </>)

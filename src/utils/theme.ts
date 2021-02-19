@@ -5,7 +5,7 @@ export const LIGHT_THEME = createMuiTheme({
     palette: {
         type: "light",
         primary: {
-            main: "#99CC66"
+            main: "#fff"
         }
     }
 });
