@@ -19,12 +19,11 @@ const Navigation = (props: ComponentProps) => {
 
     return (
         <>
-            <AppBar elevation={0} position='static' >
+            <AppBar elevation={0} position='static' color='transparent' >
                 <Toolbar className={classes.toolbar}>
                     <img className={classes.logo} src={logo} onClick={() => history.push('/home')} />
                     <Button className={classes.navlink} variant="contained" color="secondary" onClick={() => history.push('/home')}>Home</Button>
                     <Button className={classes.navlink} variant="contained" color="secondary" onClick={() => history.push('/home/users')}>Users</Button>
-
                 </Toolbar>
             </AppBar>
         </>)
