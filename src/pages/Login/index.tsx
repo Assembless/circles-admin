@@ -18,6 +18,7 @@ const Login = () => {
     }
 
     const handleSubmit = () => {
+
         const errorsData = validate(inputValues)
         if (!errorsData.username && !errorsData.password) {
             history.push('/home')
@@ -30,6 +31,7 @@ const Login = () => {
     return (
         <div className={classes.root}>
             <form className={classes.formContainer}>
+                Home
                 <img className={classes.logo} src={logo} alt='logo' />
                 <h2 className={classes.title}>Circles Administration Panel</h2>
                 <TextField className={classes.login} id="username" label="Login" variant="outlined" value={inputValues.username} onChange={handleChange} />
@@ -50,18 +52,19 @@ const validate = (values: TFormInputs) => {
 
     let errors = { username: '', password: '' };
 
+    if (values.username && values.username !== REACT_APP_LOGIN) {
+        errors.username = 'Username is invalid.'
+    }
     if (!values.username) {
         errors.username = 'Username is required.';
     }
-    if (values.username !== REACT_APP_LOGIN) {
-        errors.username = 'Username is invalid.'
+    if (values.password && values.password !== REACT_APP_PASSWORD) {
+        errors.password = 'Password is invalid.'
     }
     if (!values.password) {
         errors.password = 'Password is required.';
     }
-    if (values.password !== REACT_APP_PASSWORD) {
-        errors.password = 'Password is invalid.'
-    }
+
     console.log(errors)
     return errors;
 }
@@ -70,17 +73,6 @@ type TFormInputs = {
     username: string;
     password: string;
 }
-/* 
-const DisplayError = ({ fieldName, error, value }: { fieldName: string, error: boolean, value: string }) => {
-    if (!error) return null;
-    return (<>
-        {error && !value && <Alert style={{ margin: " 15px 0" }} severity="error">
-            <AlertTitle>Upps...</AlertTitle>
-            {fieldName} is required</Alert>}
-        {error && value && <Alert style={{ margin: " 15px 0" }} severity="error">
-            <AlertTitle>Upps...</AlertTitle>
-            {fieldName} wrong value</Alert>}
-    </>)
-}
- */
+
+
 export default Login;
