@@ -12,39 +12,49 @@ const useStyles = makeStyles((theme) => ({
     formContainer: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        padding: '50px 70px',
+        padding: '30px 40px',
         borderRadius: '8px',
         boxShadow: 'rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px'
     },
 
+    topContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginBottom: '20px',
+    },
+
     logo: {
-        width: '160px',
-        marginBottom: '10px',
+        width: '60px',
+        marginBottom: '15px',
     },
 
     title: {
         fontWeight: 600,
-        margin: '0 30px 30px 30px',
+        fontSize: '18px',
+        margin: '0 20px',
     },
 
     login: {
-        marginBottom: '25px',
-        width: '100%',
+
     },
 
     password: {
-        width: '100%',
-        marginBottom: '35px',
+        marginTop: '15px',
+    },
+
+    btnContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '20px',
     },
 
     loginBtn: {
-        width: '200px',
+        width: '150px',
     },
 
     error: {
-        marginBottom: '20px',
-        width: '100%',
+        marginTop: '10px',
     },
 }));
 

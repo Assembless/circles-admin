@@ -5,7 +5,13 @@ export const LIGHT_THEME = createMuiTheme({
     palette: {
         type: "light",
         primary: {
-            main: "#fff"
+            main: "#449ee2"
+        },
+        secondary: {
+            main: "#99d8ff"
+        },
+        background: {
+            default: "#FAFAFA"
         }
     }
 });

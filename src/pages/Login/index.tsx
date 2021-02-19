@@ -3,7 +3,7 @@ import { TextField, Box, Button } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { useHistory } from 'react-router-dom';
 import useStyles from "./styles"
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/circles-logo.svg'
 
 const Login = () => {
 
@@ -15,6 +15,7 @@ const Login = () => {
 
     const handleChange = (e: any) => {
         setInputValues({ ...inputValues, [e.target.id]: e.target.value })
+        setErrors({ username: '', password: '' })
     }
 
     const handleSubmit = () => {
@@ -30,17 +31,21 @@ const Login = () => {
 
     return (
         <div className={classes.root}>
+            Home
             <form className={classes.formContainer}>
-                Home
-                <img className={classes.logo} src={logo} alt='logo' />
-                <h2 className={classes.title}>Circles Administration Panel</h2>
+                <Box className={classes.topContainer}>
+                    <img className={classes.logo} src={logo} alt='logo' />
+                    <h2 className={classes.title}>Circles Administration Panel</h2>
+                </Box>
                 <TextField className={classes.login} id="username" label="Login" variant="outlined" value={inputValues.username} onChange={handleChange} />
                 {errors.username && <Alert className={classes.error} severity="error">{errors.username}</Alert>}
                 <TextField className={classes.password} type='password' id="password" label="Password" variant="outlined" value={inputValues.password} onChange={handleChange} />
                 {errors.password && <Alert className={classes.error} severity="error">{errors.password}</Alert>}
-                <Button className={classes.loginBtn} variant='contained' size='large' onClick={handleSubmit}>login</Button>
+                <Box className={classes.btnContainer}>
+                    <Button className={classes.loginBtn} variant='contained' onClick={handleSubmit}>login</Button>
+                </Box>
             </form>
-        </div>
+        </div >
     )
 }
 
@@ -65,7 +70,6 @@ const validate = (values: TFormInputs) => {
         errors.password = 'Password is required.';
     }
 
-    console.log(errors)
     return errors;
 }
 
