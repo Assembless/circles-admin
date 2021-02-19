@@ -14,9 +14,21 @@ const Welcome = (props: ComponentProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();
 
-    return <Box className={cx(classes.root, props.className)} style={props.style}>
-        <h4 className={classes.h4}>welcome</h4>
-    </Box>
+    return <div className={cx(classes.root, props.className)} style={props.style}>
+        <Box className={classes.container1}>
+
+            <h1>Circles-Web</h1>
+            <Box className={classes.top1}>
+                dsjajds
+            </Box>
+            <Box>
+                <h3>Circles Web</h3>
+            </Box>
+        </Box>
+        <Box className={classes.container2}>
+            <h2>Circles Web</h2>
+        </Box>
+    </div>
 }
 
 // Creates a hook for generating classnames.

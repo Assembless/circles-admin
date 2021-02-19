@@ -13,6 +13,7 @@ export default ((theme: any) => createStyles({
     logo: {
         height: '50px',
         marginRight: '4%',
+        cursor: 'pointer',
     },
 
     navlink: {
