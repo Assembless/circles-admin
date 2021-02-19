@@ -55,4 +55,3 @@ export const useDispatchCommand = () => {
 
     return ref.current;
 }
-

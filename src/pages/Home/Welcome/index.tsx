@@ -10,7 +10,6 @@ import cx from "classnames";
 import styles from "./styles";
 import translations from "./trans";
 
-
 const Welcome = (props: ComponentProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();

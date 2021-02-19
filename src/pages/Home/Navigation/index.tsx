@@ -16,7 +16,6 @@ const Navigation = (props: ComponentProps) => {
     const classes = useStyles();
     const history = useHistory();
 
-
     return (
         <>
             <AppBar position='static' >

@@ -3,6 +3,7 @@ import { TextField, Box, Button } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { useHistory } from 'react-router-dom';
 import useStyles from "./styles"
+import logo from '../../assets/logo.svg'
 
 const Login = () => {
 
@@ -41,15 +42,12 @@ const Login = () => {
 
     return (
         <div className={classes.root}>
-            <form className={classes.loginContainer}>
-                <h2>Circles Administration Panel</h2>
-                <Box>
-                    <TextField className={classes.login} id="login" label="Login" variant="outlined" value={login} onChange={handleChange} />
-                </Box>
-                <Box>
-                    <TextField className={classes.password} type='password' id="password" label="Password" variant="outlined" value={password} onChange={handleChange} />
-                </Box>
-                <Button variant='contained' onClick={handleSubmit}>login</Button>
+            <form className={classes.formContainer}>
+                <img className={classes.logo} src={logo} alt='logo' />
+                <h2 className={classes.title}>Circles Administration Panel</h2>
+                <TextField className={classes.login} id="login" label="Login" variant="outlined" value={login} onChange={handleChange} />
+                <TextField className={classes.password} type='password' id="password" label="Password" variant="outlined" value={password} onChange={handleChange} />
+                <Button className={classes.loginBtn} variant='contained' size='large' onClick={handleSubmit}>login</Button>
             </form>
         </div>
     )
