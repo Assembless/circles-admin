@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/circles-admin/static/js/main.93e89cd8.chunk.js",
-    "main.js.map": "/circles-admin/static/js/main.93e89cd8.chunk.js.map",
+    "main.js": "/circles-admin/static/js/main.b711c171.chunk.js",
+    "main.js.map": "/circles-admin/static/js/main.b711c171.chunk.js.map",
     "runtime-main.js": "/circles-admin/static/js/runtime-main.440c3699.js",
     "runtime-main.js.map": "/circles-admin/static/js/runtime-main.440c3699.js.map",
     "static/js/2.d00f7949.chunk.js": "/circles-admin/static/js/2.d00f7949.chunk.js",
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.440c3699.js",
     "static/js/2.d00f7949.chunk.js",
-    "static/js/main.93e89cd8.chunk.js"
+    "static/js/main.b711c171.chunk.js"
   ]
 }
