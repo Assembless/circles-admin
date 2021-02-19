@@ -7,7 +7,7 @@ const Routes = () => {
     const location = useLocation();
 
     return <Switch>
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Login} />
         <Route path="/home" component={Home} />
         <Route exact component={WrongPage} />
     </Switch>
