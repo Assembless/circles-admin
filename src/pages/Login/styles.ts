@@ -20,25 +20,31 @@ const useStyles = makeStyles((theme) => ({
 
     logo: {
         width: '160px',
+        marginBottom: '10px',
     },
 
     title: {
         fontWeight: 600,
-        marginBottom: '30px',
+        margin: '0 30px 30px 30px',
     },
 
     login: {
-        marginBottom: '20px',
+        marginBottom: '25px',
         width: '100%',
     },
 
     password: {
         width: '100%',
-        marginBottom: '20px',
+        marginBottom: '35px',
     },
 
     loginBtn: {
         width: '200px',
+    },
+
+    error: {
+        marginBottom: '20px',
+        width: '100%',
     },
 }));
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { TextField, Box, Button } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { useHistory } from 'react-router-dom';
@@ -10,33 +10,20 @@ const Login = () => {
     const history = useHistory();
     const classes = useStyles();
 
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState(false);
+    const [inputValues, setInputValues] = useState({ username: '', password: '' })
+    const [errors, setErrors] = useState({ username: '', password: '' })
 
     const handleChange = (e: any) => {
-        const value = e.target.value
-        const id = e.target.id;
-        switch (id) {
-            case 'login':
-                setLogin(value);
-                setError(false);
-                break;
-            case 'password':
-                setPassword(value);
-                setError(false);
-                break;
-        }
+        setInputValues({ ...inputValues, [e.target.id]: e.target.value })
     }
 
-    const { REACT_APP_LOGIN, REACT_APP_PASSWORD } = process.env
-
     const handleSubmit = () => {
-        if (login === REACT_APP_LOGIN && password === REACT_APP_PASSWORD) {
-            history.push('/');
+        const errorsData = validate(inputValues)
+        if (!errorsData.username && !errorsData.password) {
+            history.push('/home')
         }
         else {
-            setError(true);
+            setErrors(errorsData)
         }
     }
 
@@ -45,12 +32,43 @@ const Login = () => {
             <form className={classes.formContainer}>
                 <img className={classes.logo} src={logo} alt='logo' />
                 <h2 className={classes.title}>Circles Administration Panel</h2>
-                <TextField className={classes.login} id="login" label="Login" variant="outlined" value={login} onChange={handleChange} />
-                <TextField className={classes.password} type='password' id="password" label="Password" variant="outlined" value={password} onChange={handleChange} />
+                <TextField className={classes.login} id="username" label="Login" variant="outlined" value={inputValues.username} onChange={handleChange} />
+                {errors.username && <Alert className={classes.error} severity="error">{errors.username}</Alert>}
+                <TextField className={classes.password} type='password' id="password" label="Password" variant="outlined" value={inputValues.password} onChange={handleChange} />
+                {errors.password && <Alert className={classes.error} severity="error">{errors.password}</Alert>}
                 <Button className={classes.loginBtn} variant='contained' size='large' onClick={handleSubmit}>login</Button>
             </form>
         </div>
     )
+}
+
+
+
+const validate = (values: TFormInputs) => {
+
+    const { REACT_APP_LOGIN, REACT_APP_PASSWORD } = process.env
+
+    let errors = { username: '', password: '' };
+
+    if (!values.username) {
+        errors.username = 'Username is required.';
+    }
+    if (values.username !== REACT_APP_LOGIN) {
+        errors.username = 'Username is invalid.'
+    }
+    if (!values.password) {
+        errors.password = 'Password is required.';
+    }
+    if (values.password !== REACT_APP_PASSWORD) {
+        errors.password = 'Password is invalid.'
+    }
+    console.log(errors)
+    return errors;
+}
+
+type TFormInputs = {
+    username: string;
+    password: string;
 }
 /* 
 const DisplayError = ({ fieldName, error, value }: { fieldName: string, error: boolean, value: string }) => {
