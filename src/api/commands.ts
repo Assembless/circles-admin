@@ -162,5 +162,30 @@ export class AccountGetSuggestions extends Command {
 
         return data;
     }
+}
 
+export class RoomList extends Command {
+    constructor(volume?: number) {
+        super(["room-roomList", { volume }]);
+
+        checkType("volume", volume, "number", "undefined");
+    }
+
+    parse(status: number, data: any) {
+        if (status !== 200) return data;
+
+        checkType("data", data, "object");
+        checkField(data, 'id', 'string');
+        checkField(data, 'label', 'string');
+
+        return data;
+    }
+}
+
+export interface IRoom {
+    id: string;
+    label: string;
+    created_at: Date;
+    access: string[];
+    accounts?: IAccount[];
 }

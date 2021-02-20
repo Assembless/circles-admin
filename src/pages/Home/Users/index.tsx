@@ -7,7 +7,7 @@ import { Switch, Route, useHistory } from 'react-router-dom'
 
 // Project scoped imports.
 import { useCommand } from "api/hooks";
-import { AccountList } from "api/commands";
+import { AccountList, RoomList } from "api/commands";
 import { useForkedState } from "utils/hooks/general";
 import { isLoaded } from "api/utils";
 import { IAccount } from "types";
@@ -23,6 +23,7 @@ const Users = (props: ComponentProps) => {
     const classes = useStyles();
 
     const accountsRq = useCommand(AccountList, undefined);
+    const roomsRq = useCommand(RoomList);
     const [accounts] = useForkedState(rq => isLoaded(rq) ? rq.data as IAccount[] : null, accountsRq);
 
     if (!accounts) return <h4>Loading...</h4>;
