@@ -35,7 +35,7 @@ export class Client implements IClient {
 
             }
 
-            let headers = new Headers({
+            const headers = new Headers({
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'multipart/form-data'
             });

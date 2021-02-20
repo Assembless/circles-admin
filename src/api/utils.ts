@@ -29,7 +29,7 @@ export const checkType = (name: string, value: any, ...types: TType[]) => {
  * @param types 
  */
 export const checkField = <T, K extends keyof T>(obj: T, field: K, ...types: TType[]) => {
-    let val = obj[field];
+    const val = obj[field];
     checkType(field as string, val, ...types);
     return val;
 }

@@ -55,7 +55,7 @@ const validate = (values: TFormInputs) => {
 
     const { REACT_APP_LOGIN, REACT_APP_PASSWORD } = process.env
 
-    let errors = { username: '', password: '' };
+    const errors = { username: '', password: '' };
 
     if (values.username && values.username !== REACT_APP_LOGIN) {
         errors.username = 'Username is invalid.'
