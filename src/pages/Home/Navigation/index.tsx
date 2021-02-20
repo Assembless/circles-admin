@@ -24,6 +24,7 @@ const Navigation = (props: ComponentProps) => {
                     <img className={classes.logo} src={logo} onClick={() => history.push('/home')} />
                     <Button className={classes.navlink} variant="contained" color="secondary" onClick={() => history.push('/home')}>Home</Button>
                     <Button className={classes.navlink} variant="contained" color="secondary" onClick={() => history.push('/home/users')}>Users</Button>
+                    <Button className={classes.navlink} variant="contained" color="secondary" onClick={() => history.push('/home/rooms')}>Rooms</Button>
                 </Toolbar>
             </AppBar>
         </>)

@@ -11,8 +11,9 @@ import translations from "./trans";
 
 //components
 import Navigation from './Navigation/index';
-import Welcome from './Welcome/index'
-import Users from './Users/index'
+import Welcome from './Welcome/index';
+import Users from './Users/index';
+import Rooms from './Rooms/index';
 
 /**
  * Home component
@@ -30,6 +31,7 @@ const Home = (props: ComponentProps) => {
         <Switch>
             <Route exact path='/home' component={Welcome} />
             <Route path='/home/users' component={Users} />
+            <Route path='/home/rooms' component={Rooms} />
         </Switch>
     </div>
 }

@@ -182,10 +182,3 @@ export class RoomList extends Command {
     }
 }
 
-export interface IRoom {
-    id: string;
-    label: string;
-    created_at: Date;
-    access: string[];
-    accounts?: IAccount[];
-}
