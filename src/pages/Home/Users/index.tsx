@@ -35,24 +35,22 @@ const Users = (props: ComponentProps) => {
             </Switch>
         </Box>
         <Box className={classes.rightContainer}>
-            <Box className={classes.tableContainer}>
-                <Table  >
-                    <TableHead>
-                        <TableRow >
-                            <TableCell></TableCell>
-                            <TableCell ><h4 className={classes.head}>Name</h4></TableCell>
-                            <TableCell ><h4 className={classes.head}>Username</h4></TableCell>
-                            <TableCell ><h4 className={classes.head}>Flags</h4></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody >
-                        {
-                            accounts.map((acc, index) => <SingleAccount key={index
-                            } accData={acc} />)
-                        }
-                    </TableBody>
-                </Table>
-            </Box>
+            <Table>
+                <TableHead>
+                    <TableRow >
+                        <TableCell></TableCell>
+                        <TableCell ><h4 className={classes.categoryName}>Name</h4></TableCell>
+                        <TableCell ><h4 className={classes.categoryName}>Username</h4></TableCell>
+                        <TableCell ><h4 className={classes.categoryName}>Flags</h4></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody >
+                    {
+                        accounts.map((acc, index) => <SingleAccount key={index
+                        } accData={acc} />)
+                    }
+                </TableBody>
+            </Table>
         </Box>
     </Box >
 }
@@ -67,13 +65,16 @@ const UserDetails = ({ accounts, path }: { accounts: IAccount[], path: any }) =>
 
     if (!account) return <div>error</div>
     return (
-        <div>
-            <Box>
-                <Avatar alt='profile photo' src={account.avatar_url} />
-                <h3>{account.details?.first_name}</h3>
+        <>
+            <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+                <Avatar style={{ height: '110px', width: '110px', marginTop: '20px' }} alt='profile photo' src={account.avatar_url} />
+                {account.details?.first_name && <h3>{account.details?.first_name}</h3>}
                 <h4>{account.label}</h4>
             </Box>
-        </div>
+            <Box>
+                dska
+            </Box>
+        </>
     )
 }
 
@@ -86,7 +87,7 @@ const SingleAccount = ({ accData }: { accData: IAccount }) => {
     }
 
     return (
-        <TableRow onClick={handleClick}>
+        <TableRow style={{ cursor: 'pointer' }} onClick={handleClick}>
             <TableCell className={classes.avatarContainer}>
                 <Avatar className={classes.avatar} alt='profile photo' src={accData?.avatar_url} />
             </TableCell>

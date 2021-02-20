@@ -17,31 +17,29 @@ export default ((theme: any) => createStyles({
     rightContainer: {
         flex: '1',
         minWidth: '300px',
-        overflowY: 'scroll'
-    },
-
-    tableContainer: {
+        overflowY: 'scroll',
 
     },
-
 
     tableRow: {
         cursor: 'pointer',
     },
 
-    head: {
+    categoryName: {
         opacity: 0.5,
+        margin: '0'
     },
 
     avatarContainer: {
-        paddingRight: '0',
+        paddingRight: '0px',
         paddingLeft: '2rem',
         width: '3%',
     },
 
     avatar: {
         height: '50px',
-        width: '50px'
+        width: '50px',
+        border: `3px solid #449ee2`
     },
 
     name: {
