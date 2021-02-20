@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/circles-admin/static/js/main.be1ca311.chunk.js",
-    "main.js.map": "/circles-admin/static/js/main.be1ca311.chunk.js.map",
+    "main.js": "/circles-admin/static/js/main.35453df1.chunk.js",
+    "main.js.map": "/circles-admin/static/js/main.35453df1.chunk.js.map",
     "runtime-main.js": "/circles-admin/static/js/runtime-main.57d15681.js",
     "runtime-main.js.map": "/circles-admin/static/js/runtime-main.57d15681.js.map",
-    "static/js/2.86a33c50.chunk.js": "/circles-admin/static/js/2.86a33c50.chunk.js",
-    "static/js/2.86a33c50.chunk.js.map": "/circles-admin/static/js/2.86a33c50.chunk.js.map",
+    "static/js/2.35f9951b.chunk.js": "/circles-admin/static/js/2.35f9951b.chunk.js",
+    "static/js/2.35f9951b.chunk.js.map": "/circles-admin/static/js/2.35f9951b.chunk.js.map",
     "static/js/3.1e0917d0.chunk.js": "/circles-admin/static/js/3.1e0917d0.chunk.js",
     "static/js/3.1e0917d0.chunk.js.map": "/circles-admin/static/js/3.1e0917d0.chunk.js.map",
     "index.html": "/circles-admin/index.html",
-    "static/js/2.86a33c50.chunk.js.LICENSE.txt": "/circles-admin/static/js/2.86a33c50.chunk.js.LICENSE.txt",
+    "static/js/2.35f9951b.chunk.js.LICENSE.txt": "/circles-admin/static/js/2.35f9951b.chunk.js.LICENSE.txt",
     "static/media/circles-logo.420d4698.svg": "/circles-admin/static/media/circles-logo.420d4698.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.57d15681.js",
-    "static/js/2.86a33c50.chunk.js",
-    "static/js/main.be1ca311.chunk.js"
+    "static/js/2.35f9951b.chunk.js",
+    "static/js/main.35453df1.chunk.js"
   ]
 }
