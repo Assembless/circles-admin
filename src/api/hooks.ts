@@ -6,7 +6,7 @@ import config from '../config/config';
 const HOST_URL = config.host_url;
 const cli = new Client(HOST_URL);
 
-export const useCommand = <T extends Command>(command: new () => T, ...args: any[]) => {
+export const useCommand = <T extends Command>(command: new (...args: any[]) => T, ...args: any[]) => {
     const ref = useRef(null as unknown as { status: number, data?: any, message?: string });
     const signal = useSignal();
 
@@ -15,8 +15,7 @@ export const useCommand = <T extends Command>(command: new () => T, ...args: any
         
         const fn = async () => {
             const _args = args || [];
-            
-            // @ts-ignore
+
             const rq = await cli.execute(new command(..._args))
             ref.current = rq;
             signal();
