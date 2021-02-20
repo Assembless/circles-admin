@@ -1,8 +1,9 @@
 // Deps scoped imports.
 import React from "react";
-import { makeStyles, Box } from "@material-ui/core";
+import { makeStyles, Box, Avatar, Table, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
 import { useLittera } from "react-littera";
 import cx from "classnames";
+import { Switch, Route, useHistory } from 'react-router-dom'
 
 // Project scoped imports.
 import { useCommand } from "api/hooks";
@@ -21,18 +22,83 @@ const Users = (props: ComponentProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();
 
-    const accountsRq = useCommand(AccountList, undefined, 5);
+    const accountsRq = useCommand(AccountList, undefined);
     const [accounts] = useForkedState(rq => isLoaded(rq) ? rq.data as IAccount[] : null, accountsRq);
-    console.log(accounts);
 
     if (!accounts) return <h4>Loading...</h4>;
 
     return <Box className={cx(classes.root, props.className)} style={props.style}>
-        <h4 className={classes.h4}>users</h4>
-        {
-            accounts.map(account => <p key={account.id}>{account.label}</p>)
-        }
-    </Box>
+        <Box className={classes.leftContainer}>
+            <Switch>
+                <Route exact path='/home/users' component={UserDetailsWelcome} />
+                <Route exact path='/home/users/:id' component={(path: any) => <UserDetails accounts={accounts} path={path} />} />
+            </Switch>
+        </Box>
+        <Box className={classes.rightContainer}>
+            <Box className={classes.tableContainer}>
+                <Table  >
+                    <TableHead>
+                        <TableRow >
+                            <TableCell></TableCell>
+                            <TableCell ><h4 className={classes.head}>Name</h4></TableCell>
+                            <TableCell ><h4 className={classes.head}>Username</h4></TableCell>
+                            <TableCell ><h4 className={classes.head}>Flags</h4></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody >
+                        {
+                            accounts.map((acc, index) => <SingleAccount key={index
+                            } accData={acc} />)
+                        }
+                    </TableBody>
+                </Table>
+            </Box>
+        </Box>
+    </Box >
+}
+
+const UserDetailsWelcome = () => {
+    return <div>userDetails</div>
+}
+
+const UserDetails = ({ accounts, path }: { accounts: IAccount[], path: any }) => {
+
+    const account = accounts.find(acc => acc.id === path.match.params.id)
+
+    if (!account) return <div>error</div>
+    return (
+        <div>
+            <Box>
+                <Avatar alt='profile photo' src={account.avatar_url} />
+                <h3>{account.details?.first_name}</h3>
+                <h4>{account.label}</h4>
+            </Box>
+        </div>
+    )
+}
+
+const SingleAccount = ({ accData }: { accData: IAccount }) => {
+    const classes = useStyles();
+    const history = useHistory();
+
+    const handleClick = (e: any) => {
+        history.push(`/home/users/${accData.id}`)
+    }
+
+    return (
+        <TableRow onClick={handleClick}>
+            <TableCell className={classes.avatarContainer}>
+                <Avatar className={classes.avatar} alt='profile photo' src={accData?.avatar_url} />
+            </TableCell>
+            <TableCell className={classes.name}>{accData.details?.first_name && accData.details?.first_name} {accData.details?.last_name && accData.details?.last_name}</TableCell>
+            <TableCell>{accData.label}</TableCell>
+            <TableCell ><Box className={classes.flags}>
+                {accData.flags?.includes("verify_email") && <p>verify</p>}
+                {accData.flags?.includes('needs_init') && <p>init</p>}
+            </Box>
+            </TableCell>
+        </TableRow>
+    )
 }
 
 // Creates a hook for generating classnames.

@@ -23,7 +23,7 @@ const Welcome = (props: ComponentProps) => {
             </Box>
             <Box className={classes.bottom1}>
                 <h3>Circles Web in numbers</h3>
-                <Box className={classes.statContainer}>kas</Box>
+                <Box className={classes.statContainer}></Box>
             </Box>
         </Box>
         <Box className={classes.container2}>

@@ -30,12 +30,10 @@ export default ((theme: any) => createStyles({
     statContainer: {
         height: '130px',
         borderRadius: '8px',
-        border: '1px solid #449ee2',
     },
 
     container2: {
         flex: '1',
-        backgroundColor: 'green',
         padding: '30px',
     },
 

@@ -29,7 +29,7 @@ const Home = (props: ComponentProps) => {
         <Navigation />
         <Switch>
             <Route exact path='/home' component={Welcome} />
-            <Route exact path='/home/users' component={Users} />
+            <Route path='/home/users' component={Users} />
         </Switch>
     </div>
 }
