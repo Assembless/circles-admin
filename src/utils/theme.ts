@@ -7,9 +7,7 @@ export const LIGHT_THEME = createMuiTheme({
         primary: {
             main: "#449ee2"
         },
-        secondary: {
-            main: "#99d8ff"
-        },
+
         background: {
             default: "#FAFAFA"
         }

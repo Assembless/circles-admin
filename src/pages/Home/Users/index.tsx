@@ -1,6 +1,6 @@
 // Deps scoped imports.
 import React from "react";
-import { makeStyles, Box, Avatar, Table, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
+import { makeStyles, Box, Avatar, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@material-ui/core";
 import { useLittera } from "react-littera";
 import cx from "classnames";
 import { Switch, Route, useHistory } from 'react-router-dom'
@@ -42,6 +42,7 @@ const Users = (props: ComponentProps) => {
                         <TableCell ><h4 className={classes.categoryName}>Name</h4></TableCell>
                         <TableCell ><h4 className={classes.categoryName}>Username</h4></TableCell>
                         <TableCell ><h4 className={classes.categoryName}>Flags</h4></TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody >
@@ -86,6 +87,11 @@ const SingleAccount = ({ accData }: { accData: IAccount }) => {
         history.push(`/home/users/${accData.id}`)
     }
 
+    const handleBtnClick = (e: any) => {
+        e.stopPropagation();
+        console.log(accData.id)
+    }
+
     return (
         <TableRow style={{ cursor: 'pointer' }} onClick={handleClick}>
             <TableCell className={classes.avatarContainer}>
@@ -97,6 +103,9 @@ const SingleAccount = ({ accData }: { accData: IAccount }) => {
                 {accData.flags?.includes("verify_email") && <p>verify</p>}
                 {accData.flags?.includes('needs_init') && <p>init</p>}
             </Box>
+            </TableCell>
+            <TableCell>
+                <Button onClick={handleBtnClick} variant='contained' color='secondary'>delete</Button>
             </TableCell>
         </TableRow>
     )
