@@ -176,9 +176,35 @@ export class RoomList extends Command {
 
         checkType("data", data, "object");
         checkField(data, 'id', 'string');
-        checkField(data, 'label', 'string');
 
         return data;
     }
 }
 
+export class AccountDelete extends Command {
+    constructor(account_id: string) {
+        super(['account-accountDelete', { account_id }]);
+
+        checkType("account_id", account_id, "string");
+    }
+
+    parse(status: number, data: any) {
+        if (status !== 204) return data;
+
+        return data;
+    }
+}
+
+export class RoomDelete extends Command {
+    constructor(room_id: string) {
+        super(['room-roomDelete', { room_id }]);
+
+        checkType("room_id", room_id, "string");
+    }
+
+    parse(status: number, data: any) {
+        if (status !== 204) return data;
+
+        return data;
+    }
+}

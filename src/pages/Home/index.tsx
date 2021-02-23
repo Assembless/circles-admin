@@ -1,5 +1,5 @@
 // Deps scoped imports.
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import { useLittera } from "react-littera";
 import cx from "classnames";
@@ -14,17 +14,16 @@ import Navigation from './Navigation/index';
 import Welcome from './Welcome/index';
 import Users from './Users/index';
 import Rooms from './Rooms/index';
+import Login from '../Login/index';
+import { useToken } from '../../utils/hooks/general';
 
-/**
- * Home component
- * @description This is the main view.
- * @version 1.0.0
- * @author Mike Eling <mike.eling97@gmail.com>
- */
 
 const Home = (props: ComponentProps) => {
-    const translated = useLittera(translations);
     const classes = useStyles();
+
+    const { token, setToken } = useToken();
+
+    if (!token) return <Login setToken={setToken} />
 
     return <div className={cx(classes.root, props.className)} style={props.style}>
         <Navigation />

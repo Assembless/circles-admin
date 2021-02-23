@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { Dispatch, useState } from 'react'
 import { TextField, Box, Button } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { Alert } from '@material-ui/lab';
 import { useHistory } from 'react-router-dom';
-import useStyles from "./styles"
-import logo from '../../assets/circles-logo.svg'
+import useStyles from "./styles";
+import logo from 'assets/circles-logo.svg';
 
-const Login = () => {
+const Login = ({ setToken }: { setToken: (tk: string | undefined) => void }) => {
 
     const history = useHistory();
     const classes = useStyles();
@@ -13,15 +13,18 @@ const Login = () => {
     const [inputValues, setInputValues] = useState({ username: '', password: '' })
     const [errors, setErrors] = useState({ username: '', password: '' })
 
+
     const handleChange = (e: any) => {
         setInputValues({ ...inputValues, [e.target.id]: e.target.value })
         setErrors({ username: '', password: '' })
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        const errorsData = validate(inputValues);
 
-        const errorsData = validate(inputValues)
         if (!errorsData.username && !errorsData.password) {
+            setToken(undefined);
             history.push('/home')
         }
         else {
@@ -53,17 +56,15 @@ const Login = () => {
 
 const validate = (values: TFormInputs) => {
 
-    const { REACT_APP_LOGIN, REACT_APP_PASSWORD } = process.env
-
     const errors = { username: '', password: '' };
 
-    if (values.username && values.username !== REACT_APP_LOGIN) {
+    if (values.username && values.username !== process.env.REACT_APP_LOGIN) {
         errors.username = 'Username is invalid.'
     }
     if (!values.username) {
         errors.username = 'Username is required.';
     }
-    if (values.password && values.password !== REACT_APP_PASSWORD) {
+    if (values.password && values.password !== process.env.REACT_APP_PASSWORD) {
         errors.password = 'Password is invalid.'
     }
     if (!values.password) {

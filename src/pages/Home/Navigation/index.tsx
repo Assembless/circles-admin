@@ -8,14 +8,18 @@ import cx from "classnames";
 import { useHistory } from 'react-router-dom';
 // Component scoped imports.
 import styles from "./styles";
-import translations from "./trans";
 import logo from '../../../assets/circles-logo.svg'
 
 
 const Navigation = (props: ComponentProps) => {
-    const translated = useLittera(translations);
     const classes = useStyles();
     const history = useHistory();
+
+
+    const handleLogOut = () => {
+        localStorage.removeItem('token');
+        history.push('/');
+    }
 
     return (
         <>
@@ -25,6 +29,7 @@ const Navigation = (props: ComponentProps) => {
                     <Button className={classes.navlink} variant="contained" color="primary" onClick={() => history.push('/home')}>Home</Button>
                     <Button className={classes.navlink} variant="contained" color="primary" onClick={() => history.push('/home/users')}>Users</Button>
                     <Button className={classes.navlink} variant="contained" color="primary" onClick={() => history.push('/home/rooms')}>Rooms</Button>
+                    <Button variant='contained' color='secondary' onClick={handleLogOut}>logout</Button>
                 </Toolbar>
             </AppBar>
         </>)

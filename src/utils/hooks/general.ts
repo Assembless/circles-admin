@@ -26,3 +26,49 @@ export const useForkedState = <T extends any[], R>(fn: (...args: T) => R, ...arg
 
     return ref.current;
 }
+
+export const useToken = () => {
+
+    const getToken = () => {
+        const storedItem = localStorage.getItem("token");
+
+        if (!storedItem) {
+            return ''
+        }
+
+        let tkn = null as unknown as string;
+
+        try {
+            tkn = atob(storedItem) as unknown as string;
+        } catch (err) {
+            // error handling...
+        }
+
+        const timestamp = Number(tkn) * 1000;
+        const date = new Date(timestamp);
+
+        /* if (tkn )
+        {
+            // error handling... 
+        } */
+        return tkn;
+    }
+
+    const [token, setToken] = useState(getToken());
+
+    const saveToken = (tk?: string) => {
+        if (!tk) tk = createToken();
+        localStorage.setItem('token', tk);
+        setToken(tk);
+    };
+    const createToken = () => {
+        const date = Date.now();
+        const tkn = btoa(date.toString());
+        return tkn;
+    }
+
+    return {
+        setToken: saveToken,
+        token
+    }
+}
