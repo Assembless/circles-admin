@@ -1,7 +1,6 @@
 // Deps scoped imports.
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, Box, Avatar, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@material-ui/core";
-import { useLittera } from "react-littera";
 import cx from "classnames";
 import { Switch, Route, useHistory } from 'react-router-dom'
 
@@ -12,15 +11,13 @@ import { useForkedState } from "utils/hooks/general";
 import { isLoaded } from "api/utils";
 import { IAccount } from "types";
 
-
-// Component scoped imports.
 import styles from "./styles";
-import translations from "./trans";
 
 
 const Users = (props: ComponentProps) => {
-    const translated = useLittera(translations);
     const classes = useStyles();
+
+    const [showSidebar, setShowSidebar] = useState(false)
 
     const accountsRq = useCommand(AccountList, undefined);
     const [accounts] = useForkedState(rq => isLoaded(rq) ? rq.data as IAccount[] : null, accountsRq);
@@ -28,27 +25,26 @@ const Users = (props: ComponentProps) => {
     if (!accounts) return <h4>Loading...</h4>;
 
     return <Box className={cx(classes.root, props.className)} style={props.style}>
-        <Box className={classes.leftContainer}>
+        {showSidebar && <Box className={classes.sidebar} style={{ display: 'visible' }} >
             <Switch>
-                <Route exact path='/home/users' component={UserDetailsWelcome} />
-                <Route exact path='/home/users/:id' component={(path: any) => <UserDetails accounts={accounts} path={path} />} />
+                <Route exact path='/home/users/:id' component={(path: any) => <UserDetails accounts={accounts} path={path} setShowSidebar={setShowSidebar} />} />
             </Switch>
-        </Box>
-        <Box className={classes.rightContainer}>
-            <Table>
+        </Box>}
+        <Box className={classes.tableContainer}>
+            <Table className={classes.table}>
                 <TableHead>
                     <TableRow >
                         <TableCell></TableCell>
                         <TableCell ><h4 className={classes.categoryName}>Name</h4></TableCell>
                         <TableCell ><h4 className={classes.categoryName}>Username</h4></TableCell>
                         <TableCell ><h4 className={classes.categoryName}>Flags</h4></TableCell>
-                        <TableCell></TableCell>
+                        <TableCell><h4 className={classes.categoryName}>Action</h4></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody >
                     {
                         accounts.map((acc, index) => <SingleAccount key={index
-                        } accData={acc} />)
+                        } accData={acc} setShowSidebar={setShowSidebar} />)
                     }
                 </TableBody>
             </Table>
@@ -56,18 +52,21 @@ const Users = (props: ComponentProps) => {
     </Box >
 }
 
-const UserDetailsWelcome = () => {
-    return <div>userDetails</div>
-}
 
-const UserDetails = ({ accounts, path }: { accounts: IAccount[], path: any }) => {
-
+const UserDetails = ({ accounts, path, setShowSidebar }: { accounts: IAccount[], path: any, setShowSidebar: (show: boolean) => void }) => {
+    const history = useHistory();
     const account = accounts.find(acc => acc.id === path.match.params.id)
+
+    const closeSidebar = () => {
+        setShowSidebar(false);
+        history.push('/home/users');
+    }
 
     if (!account) return <div>error</div>
     return (
         <>
             <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+                <Button onClick={closeSidebar}>close</Button>
                 <Avatar style={{ height: '110px', width: '110px', marginTop: '20px' }} alt='profile photo' src={account.avatar_url} />
                 {account.details?.first_name && <h3>{account.details?.first_name}</h3>}
                 <h4>{account.label}</h4>
@@ -79,12 +78,14 @@ const UserDetails = ({ accounts, path }: { accounts: IAccount[], path: any }) =>
     )
 }
 
-const SingleAccount = ({ accData }: { accData: IAccount }) => {
+
+const SingleAccount = ({ accData, setShowSidebar }: { accData: IAccount, setShowSidebar: (show: boolean) => void }) => {
     const classes = useStyles();
     const history = useHistory();
 
     const handleClick = (e: any) => {
-        history.push(`/home/users/${accData.id}`)
+        history.push(`/home/users/${accData.id}`);
+        setShowSidebar(true);
     }
 
     const handleBtnClick = (e: any) => {
@@ -97,24 +98,21 @@ const SingleAccount = ({ accData }: { accData: IAccount }) => {
             <TableCell className={classes.avatarContainer}>
                 <Avatar className={classes.avatar} alt='profile photo' src={accData?.avatar_url} />
             </TableCell>
-            <TableCell className={classes.name}>{accData.details?.first_name && accData.details?.first_name} {accData.details?.last_name && accData.details?.last_name}</TableCell>
+            <TableCell className={classes.name}>{accData.details ? `${accData.details?.first_name} ${accData.details?.last_name} ` : <p className={classes.notProvided}>Not provided</p>}</TableCell>
             <TableCell>{accData.label}</TableCell>
             <TableCell ><Box className={classes.flags}>
-                {accData.flags?.includes("verify_email") && <p>verify</p>}
-                {accData.flags?.includes('needs_init') && <p>init</p>}
+                {accData.flags?.includes("verify_email") && <p>verify</p>} {accData.flags?.includes('needs_init') && <p>init</p>}
             </Box>
             </TableCell>
             <TableCell>
-                <Button onClick={handleBtnClick} variant='contained' color='secondary'>delete</Button>
+                <Button onClick={handleBtnClick} variant='contained' color='secondary' size='small'>delete</Button>
             </TableCell>
         </TableRow>
     )
 }
 
-// Creates a hook for generating classnames.
 const useStyles = makeStyles(styles);
 
-// Props the component accepts.
 type ComponentProps = {
     className?: string;
     style?: React.CSSProperties

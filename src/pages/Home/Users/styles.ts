@@ -5,20 +5,28 @@ export default ((theme: any) => createStyles({
     root: {
         height: '90vh',
         display: 'flex',
+        backgroundColor: '#f2f2f2',
     },
 
-    leftContainer: {
+    sidebar: {
         width: '25%',
         minWidth: '300px',
         padding: '30px',
-        borderRight: '4px solid #e0e0e0',
+        boxShadow: ' 4px 3px 7px 0 rgba(0, 0, 0, 0.15)',
+        backgroundColor: '#fff',
     },
 
-    rightContainer: {
+    tableContainer: {
+        display: 'flex',
+        justifyContent: 'center',
         flex: '1',
         minWidth: '300px',
         overflowY: 'scroll',
+    },
 
+    table: {
+        width: '90%',
+        backgroundColor: '#fff',
     },
 
     tableRow: {
@@ -45,6 +53,12 @@ export default ((theme: any) => createStyles({
     name: {
         fontSize: '16px',
         fontWeight: 600,
+    },
+
+    notProvided: {
+        opacity: 0.4,
+        textTransform: 'uppercase',
+        fontSize: '14px',
     },
 
     flags: {

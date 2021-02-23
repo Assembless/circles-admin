@@ -48,7 +48,7 @@ const SingleRoom = ({ roomData }: { roomData: IRoom }) => {
             <TableCell> needs date handling</TableCell>
             <TableCell>to do parse from string</TableCell>
             <TableCell>
-                <Button variant="contained" color="secondary">delete</Button>
+                <Button variant="contained" color="secondary" size='small'>delete</Button>
             </TableCell>
         </TableRow>
     )
