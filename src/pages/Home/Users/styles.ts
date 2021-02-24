@@ -5,6 +5,7 @@ export default ((theme: any) => createStyles({
     root: {
         height: '90vh',
         display: 'flex',
+        justifyContent: 'center',
         backgroundColor: '#f2f2f2',
     },
 
@@ -25,7 +26,8 @@ export default ((theme: any) => createStyles({
     },
 
     table: {
-        width: '90%',
+        marginTop: '40px',
+        width: '92%',
         backgroundColor: '#fff',
     },
 
@@ -33,12 +35,15 @@ export default ((theme: any) => createStyles({
         cursor: 'pointer',
     },
 
-    categoryName: {
-        opacity: 0.5,
+    columnName: {
+        fontSize: '14px',
+        fontWeight: 'bold',
+        opacity: 0.4,
         margin: '0'
     },
 
     avatarContainer: {
+        padding: '10px 4rem 10px  0',
         paddingRight: '0px',
         paddingLeft: '2rem',
         width: '3%',
@@ -47,12 +52,12 @@ export default ((theme: any) => createStyles({
     avatar: {
         height: '50px',
         width: '50px',
-        border: `3px solid #449ee2`
+        border: `4px solid #449ee2`
     },
 
     name: {
         fontSize: '16px',
-        fontWeight: 600,
+        fontWeight: 'bold'
     },
 
     notProvided: {
@@ -63,5 +68,9 @@ export default ((theme: any) => createStyles({
 
     flags: {
         display: 'flex'
-    }
+    },
+
+    trashIcon: {
+
+    },
 }));

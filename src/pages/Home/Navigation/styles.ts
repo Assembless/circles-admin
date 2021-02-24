@@ -19,20 +19,32 @@ export default ((theme: any) => createStyles({
 
     logo: {
         height: '43px',
-        marginRight: '4vw',
+        marginRight: '3vw',
         cursor: 'pointer',
     },
 
     navLinks: {
         display: 'flex',
         alignItems: 'center',
+
     },
 
-    navlink: {
+    navIcon: {
+        marginRight: '5px',
+        color: '#449ee2',
+    },
+
+    navText: {
+        opacity: 0.8,
+        fontSize: '14px',
+    },
+
+    navLink: {
+        display: 'flex',
+        alignItems: 'center',
         cursor: 'pointer',
         marginRight: '1.5rem',
         transition: '0.1s ease',
-        opacity: 0.8,
         fontSize: '14px',
         textTransform: 'uppercase',
         letterSpacing: '0.6px',
@@ -41,4 +53,5 @@ export default ((theme: any) => createStyles({
             color: '#449ee2',
         }
     }
+
 }));

@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, Box } from "@material-ui/core";
+import { makeStyles, Box, Icon, Typography } from "@material-ui/core";
 import cx from "classnames";
 import styles from "./styles";
 import { useCommand } from 'api/hooks';
@@ -7,6 +7,7 @@ import { AccountList, RoomList } from 'api/commands';
 import { useForkedState } from 'utils/hooks/general';
 import { isLoaded } from 'api/utils';
 import { IRoom, IAccount } from 'types';
+
 
 
 const Welcome = (props: ComponentProps) => {
@@ -19,21 +20,17 @@ const Welcome = (props: ComponentProps) => {
 
 
     return <div className={cx(classes.root, props.className)} style={props.style}>
-        <Box className={classes.container1}>
-            <Box className={classes.top1}>
-                <h2>Hello &apos;username&apos;</h2>
-                <h3>Thank you for your contribution in Assembless!</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dolores aut eaque nihil aperiam? Porro velit id odio, distinctio impedit at itaque laboriosam incidunt eum! Nemo doloremque nisi in, iure odio incidunt aperiam laudantium dolores molestias explicabo aspernatur? Ipsam, doloribus?</p>
+        <Typography variant='h2' className={classes.title}>Our numbers</Typography>
+        <Box display='flex' justifyContent='center' >
+            <Box className={classes.iconContainer} margin='0 50px'>
+                <Icon className={classes.icon}>people_alt</Icon>
+                <Typography className={classes.number}>{accounts?.length}</Typography>
             </Box>
-        </Box>
-        <Box className={classes.container2}>
-            <Box className={classes.bottom1}>
-                <h3>Our numbers</h3>
-                <Box className={classes.statContainer}>
-                    <Box className={classes.statistic}><h4>Users</h4>{accounts?.length}</Box>
-                    <Box className={classes.statistic}><h4>Rooms</h4>{rooms?.length}</Box>
-                </Box>
+            <Box className={classes.iconContainer} margin='0 50px'>
+                <Icon className={classes.icon}>meeting_room</Icon>
+                <Typography className={classes.number}>{rooms?.length}</Typography>
             </Box>
+
         </Box>
     </div>
 }

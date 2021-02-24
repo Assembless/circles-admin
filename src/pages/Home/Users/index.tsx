@@ -1,6 +1,6 @@
 // Deps scoped imports.
 import React, { useState } from "react";
-import { makeStyles, Box, Avatar, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@material-ui/core";
+import { makeStyles, Box, Avatar, Table, TableHead, TableRow, TableCell, TableBody, Button, Icon, Typography } from "@material-ui/core";
 import cx from "classnames";
 import { Switch, Route, useHistory } from 'react-router-dom'
 
@@ -12,6 +12,7 @@ import { isLoaded } from "api/utils";
 import { IAccount } from "types";
 
 import styles from "./styles";
+import { type } from "os";
 
 
 const Users = (props: ComponentProps) => {
@@ -35,10 +36,10 @@ const Users = (props: ComponentProps) => {
                 <TableHead>
                     <TableRow >
                         <TableCell></TableCell>
-                        <TableCell ><h4 className={classes.categoryName}>Name</h4></TableCell>
-                        <TableCell ><h4 className={classes.categoryName}>Username</h4></TableCell>
-                        <TableCell ><h4 className={classes.categoryName}>Flags</h4></TableCell>
-                        <TableCell><h4 className={classes.categoryName}>Action</h4></TableCell>
+                        <TableCell ><Typography variant='h4' className={classes.columnName}>Name</Typography></TableCell>
+                        <TableCell ><Typography variant='h4' className={classes.columnName}>Username</Typography></TableCell>
+                        <TableCell ><Typography variant='h4' className={classes.columnName}>Flags</Typography></TableCell>
+                        <TableCell><Typography variant='h4' className={classes.columnName}>Action</Typography></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody >
@@ -65,11 +66,13 @@ const UserDetails = ({ accounts, path, setShowSidebar }: { accounts: IAccount[],
     if (!account) return <div>error</div>
     return (
         <>
-            <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
-                <Button onClick={closeSidebar}>close</Button>
-                <Avatar style={{ height: '110px', width: '110px', marginTop: '20px' }} alt='profile photo' src={account.avatar_url} />
-                {account.details?.first_name && <h3>{account.details?.first_name}</h3>}
-                <h4>{account.label}</h4>
+            <Box >
+                <Box style={{ textAlign: 'end' }}><Button onClick={closeSidebar}>close</Button></Box>
+                <Box display='flex' flexDirection='column' alignItems='center'>
+                    <Avatar style={{ height: '140px', width: '140px', marginTop: '20px' }} alt='profile photo' src={account.avatar_url} />
+                    {account.details?.first_name && <Typography>{account.details?.first_name}</Typography>}
+                    <Typography>{account.label}</Typography>
+                </Box>
             </Box>
             <Box>
 
@@ -94,18 +97,18 @@ const SingleAccount = ({ accData, setShowSidebar }: { accData: IAccount, setShow
     }
 
     return (
-        <TableRow style={{ cursor: 'pointer' }} onClick={handleClick}>
+        <TableRow hover style={{ cursor: 'pointer' }} onClick={handleClick}>
             <TableCell className={classes.avatarContainer}>
                 <Avatar className={classes.avatar} alt='profile photo' src={accData?.avatar_url} />
             </TableCell>
-            <TableCell className={classes.name}>{accData.details ? `${accData.details?.first_name} ${accData.details?.last_name} ` : <p className={classes.notProvided}>Not provided</p>}</TableCell>
-            <TableCell>{accData.label}</TableCell>
+            <TableCell >{accData.details ? <Typography className={classes.name}>{accData.details?.first_name} {accData.details?.last_name}</Typography> : <Typography className={classes.notProvided}>Not provided</Typography>}</TableCell>
+            <TableCell><Typography>{accData.label}</Typography></TableCell>
             <TableCell ><Box className={classes.flags}>
-                {accData.flags?.includes("verify_email") && <p>verify</p>} {accData.flags?.includes('needs_init') && <p>init</p>}
+                <Typography>{accData.flags?.includes("verify_email") && 'verify'} {accData.flags?.includes('needs_init') && 'init'}</Typography>
             </Box>
             </TableCell>
-            <TableCell>
-                <Button onClick={handleBtnClick} variant='contained' color='secondary' size='small'>delete</Button>
+            <TableCell >
+                <Icon className={classes.trashIcon} color='secondary' onClick={handleBtnClick}>delete_forever</Icon>
             </TableCell>
         </TableRow>
     )

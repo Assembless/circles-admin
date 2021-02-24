@@ -1,7 +1,6 @@
 // Deps scoped imports.
 import React from "react";
-import { makeStyles, Box, Avatar, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@material-ui/core";
-import cx from "classnames";
+import { makeStyles, Box, Table, TableHead, TableRow, TableCell, TableBody, Button, Icon, Typography } from "@material-ui/core";
 
 // Project scoped imports.
 import { useCommand } from 'api/hooks';
@@ -15,22 +14,22 @@ import styles from "./styles";
 
 
 
-const Component = () => {
+const Rooms = () => {
     const classes = useStyles();
 
     const roomsRq = useCommand(RoomList);
     const [rooms] = useForkedState(rq => isLoaded(rq) ? rq.data as IRoom[] : null, roomsRq);
 
     if (!rooms) return <h4>Loading...</h4>;
-    return <Box >
-        <Table>
+    return <Box className={classes.root}>
+        <Table className={classes.table}>
             <TableHead>
                 <TableRow >
-                    <TableCell><h4>Room ID</h4></TableCell>
-                    <TableCell><h4>Name</h4></TableCell>
-                    <TableCell><h4>Created at</h4></TableCell>
-                    <TableCell><h4>Access</h4></TableCell>
-                    <TableCell></TableCell>
+                    <TableCell><Typography variant='h4' className={classes.columnName}>Room ID</Typography></TableCell>
+                    <TableCell><Typography variant='h4' className={classes.columnName}>Name</Typography></TableCell>
+                    <TableCell><Typography variant='h4' className={classes.columnName}>Created at</Typography></TableCell>
+                    <TableCell><Typography variant='h4' className={classes.columnName}>Access</Typography></TableCell>
+                    <TableCell><Typography variant='h4' className={classes.columnName}>Action</Typography></TableCell >
                 </TableRow>
             </TableHead>
             <TableBody >
@@ -42,13 +41,13 @@ const Component = () => {
 
 const SingleRoom = ({ roomData }: { roomData: IRoom }) => {
     return (
-        <TableRow style={{ cursor: 'pointer' }}>
+        <TableRow hover style={{ cursor: 'pointer' }}>
             <TableCell>{roomData.id}</TableCell>
             <TableCell>{roomData.label}</TableCell>
             <TableCell> needs date handling</TableCell>
             <TableCell>to do parse from string</TableCell>
-            <TableCell>
-                <Button variant="contained" color="secondary" size='small'>delete</Button>
+            <TableCell >
+                <Icon color='secondary'>delete_forever</Icon>
             </TableCell>
         </TableRow>
     )
@@ -58,4 +57,4 @@ const useStyles = makeStyles(styles);
 
 
 // Time to export! 🚚
-export default Component;
+export default Rooms;

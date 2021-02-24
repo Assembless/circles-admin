@@ -1,13 +1,11 @@
 // Deps scoped imports.
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core";
-import { useLittera } from "react-littera";
 import cx from "classnames";
 import { Switch, Route } from 'react-router-dom'
 
 // Project scoped imports.
 import styles from "./styles";
-import translations from "./trans";
 
 //components
 import Navigation from './Navigation/index';
