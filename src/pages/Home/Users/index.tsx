@@ -12,13 +12,13 @@ import { isLoaded } from "api/utils";
 import { IAccount } from "types";
 
 import styles from "./styles";
-import { type } from "os";
+
 
 
 const Users = (props: ComponentProps) => {
     const classes = useStyles();
 
-    const [showSidebar, setShowSidebar] = useState(false)
+    const [showSidebar, setShowSidebar] = useState(false);
 
     const accountsRq = useCommand(AccountList, undefined);
     const [accounts] = useForkedState(rq => isLoaded(rq) ? rq.data as IAccount[] : null, accountsRq);
@@ -26,7 +26,7 @@ const Users = (props: ComponentProps) => {
     if (!accounts) return <h4>Loading...</h4>;
 
     return <Box className={cx(classes.root, props.className)} style={props.style}>
-        {showSidebar && <Box className={classes.sidebar} style={{ display: 'visible' }} >
+        {showSidebar && <Box className={classes.sidebar} >
             <Switch>
                 <Route exact path='/home/users/:id' component={(path: any) => <UserDetails accounts={accounts} path={path} setShowSidebar={setShowSidebar} />} />
             </Switch>
@@ -56,6 +56,7 @@ const Users = (props: ComponentProps) => {
 
 const UserDetails = ({ accounts, path, setShowSidebar }: { accounts: IAccount[], path: any, setShowSidebar: (show: boolean) => void }) => {
     const history = useHistory();
+    const classes = useStyles();
     const account = accounts.find(acc => acc.id === path.match.params.id)
 
     const closeSidebar = () => {
@@ -70,9 +71,15 @@ const UserDetails = ({ accounts, path, setShowSidebar }: { accounts: IAccount[],
                 <Box style={{ textAlign: 'end' }}><Button onClick={closeSidebar}>close</Button></Box>
                 <Box display='flex' flexDirection='column' alignItems='center'>
                     <Avatar style={{ height: '140px', width: '140px', marginTop: '20px' }} alt='profile photo' src={account.avatar_url} />
-                    {account.details?.first_name && <Typography>{account.details?.first_name}</Typography>}
-                    <Typography>{account.label}</Typography>
+                    <Typography style={{ margin: '10px 0 40px 0', fontWeight: 'bold' }}>{account.label}</Typography>
                 </Box>
+                {account.details && <Box className={classes.detailsContainer}>
+                    <Detail icon='people_alt' title='Names' detail={account.details?.first_name} color='red' />
+                    <Detail icon='people_alt' title='Surname' detail={account.details?.last_name} color='green' />
+                    <Detail icon='cake' title='Birthdate' detail={account.details?.birthdate} color='blue' />
+                    <Detail icon='wc' title='Sex' detail={account.details?.sex} color='pink' />
+                </Box>}
+                <Detail icon='email' title='Email' detail={account.contact.email} color='darkblue' />
             </Box>
             <Box>
 
@@ -81,6 +88,26 @@ const UserDetails = ({ accounts, path, setShowSidebar }: { accounts: IAccount[],
     )
 }
 
+const Detail = (props: DetailProps) => {
+    const classes = useStyles();
+    return <Box display='flex' alignItems='center' marginBottom='20px' >
+        <Box boxShadow={1} style={{ borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Icon style={{ opacity: 0.6, fontSize: '21px', color: `${props.color}` }} >{props.icon}</Icon>
+        </Box>
+        <Box className={classes.detailContainer}>
+            <Typography variant='h6' className={classes.detailTitle}>{props.title}</Typography>
+            <Typography className={classes.detail}>{props.detail}</Typography>
+        </Box>
+    </Box>
+
+}
+
+type DetailProps = {
+    icon: string;
+    title: string;
+    detail: string | Date | undefined;
+    color: string;
+}
 
 const SingleAccount = ({ accData, setShowSidebar }: { accData: IAccount, setShowSidebar: (show: boolean) => void }) => {
     const classes = useStyles();
@@ -95,7 +122,7 @@ const SingleAccount = ({ accData, setShowSidebar }: { accData: IAccount, setShow
         e.stopPropagation();
         console.log(accData.id)
     }
-
+    console.log(accData.details)
     return (
         <TableRow hover style={{ cursor: 'pointer' }} onClick={handleClick}>
             <TableCell className={classes.avatarContainer}>
@@ -103,9 +130,10 @@ const SingleAccount = ({ accData, setShowSidebar }: { accData: IAccount, setShow
             </TableCell>
             <TableCell >{accData.details ? <Typography className={classes.name}>{accData.details?.first_name} {accData.details?.last_name}</Typography> : <Typography className={classes.notProvided}>Not provided</Typography>}</TableCell>
             <TableCell><Typography>{accData.label}</Typography></TableCell>
-            <TableCell ><Box className={classes.flags}>
-                <Typography>{accData.flags?.includes("verify_email") && 'verify'} {accData.flags?.includes('needs_init') && 'init'}</Typography>
-            </Box>
+            <TableCell >
+                <Box className={classes.flags}>
+                    <Typography>{accData.flags?.includes("verify_email") && 'verify'} {accData.flags?.includes('needs_init') && 'init'}</Typography>
+                </Box>
             </TableCell>
             <TableCell >
                 <Icon className={classes.trashIcon} color='secondary' onClick={handleBtnClick}>delete_forever</Icon>

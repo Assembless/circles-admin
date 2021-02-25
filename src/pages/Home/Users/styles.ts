@@ -52,7 +52,7 @@ export default ((theme: any) => createStyles({
     avatar: {
         height: '50px',
         width: '50px',
-        border: `4px solid #449ee2`
+        border: `3.5px solid #449ee2`
     },
 
     name: {
@@ -72,5 +72,27 @@ export default ((theme: any) => createStyles({
 
     trashIcon: {
 
+    },
+
+    detailsContainer: {
+
+    },
+
+    detailContainer: {
+        flex: '1',
+        borderBottom: '2px solid #f2f2f2',
+        marginLeft: '8%',
+    },
+
+    detailTitle: {
+        fontSize: '12px',
+        fontWeight: 'bold',
+        color: '#449ee2',
+        marginBottom: '2px',
+    },
+
+    detail: {
+        fontWeight: 'bold',
+        marginBottom: '4px',
     },
 }));
